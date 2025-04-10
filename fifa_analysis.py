@@ -1,39 +1,15 @@
 import pandas as pd
 
-# Set the maximum column width to a larger value (e.g., 200)
-pd.set_option('display.max_colwidth', 200)
-
 # Load the CSV file
-df = pd.read_csv(r'C:\Users\acyp2\OneDrive\Desktop\BACS3013  DATA SCIENCE\fifa_players.csv')
+file_path = r'C:\Users\acyp2\OneDrive\Desktop\BACS3013  DATA SCIENCE\fifa_players.csv'
+df = pd.read_csv(file_path)
 
-position_mapping = {
-    'CF': 'Center Forward',
-    'RW': 'Right Winger',
-    'ST': 'Striker',
-    'CAM': 'Central Attacking Midfielder',
-    'RM': 'Right Midfielder',
-    'CM': 'Central Midfielder',
-    'LW': 'Left Winger',
-    'CB': 'Center Back',
-    'GK': 'Goalkeeper',
-    'CDM': 'Central Defensive Midfielder',
-    'LB': 'Left Back',
-    'LM': 'Left Midfielder',
-    'RB': 'Right Back',
-    'RWB': 'Right Wing Back',
-    'LWB': 'Left Wing Back'
-}
+# Select columns from the beginning up to (but not including) the 3rd column (index 2)
+# and then select columns from the 4th column (index 3) up to (but not including) the 6th column (index 5)
+columns_to_keep = df.columns[:2].tolist() + df.columns[3:5].tolist()
 
-if 'positions' in df.columns:
-    def convert_to_long_form(short_positions):
-        if isinstance(short_positions, str):
-            return ', '.join(position_mapping.get(pos.strip(), pos.strip()) for pos in short_positions.split(','))
-        return short_positions
+# Create a new DataFrame with only the selected columns
+df_selected = df[columns_to_keep]
 
-    df['long_form_positions'] = df['positions'].apply(convert_to_long_form)
-
-    print("First 5 Rows with Original and Long-Form Positions:")
-    print(df[['positions', 'long_form_positions']].head())
-
-else:
-    print("The 'positions' column does not exist in the dataset.")
+print("DataFrame with the first two and the fourth and fifth columns:\n")
+print(df_selected.head())

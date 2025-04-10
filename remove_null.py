@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 
+# ONLY REMOVING THE UNWANTED COLUMNS AND CHANGING TO LONG FORM
+
 # Load the CSV file
 file_path = r'C:\Users\acyp2\OneDrive\Desktop\BACS3013  DATA SCIENCE\fifa_players.csv'
 df = pd.read_csv(file_path)
@@ -50,16 +52,16 @@ if 'positions' in df.columns:
     # print column names AFTER dropping
     print("\nColumns AFTER dropping:\n", df.columns.tolist())
 
-    # d output file path
-    output_dir = r'C:\Users\acyp2\OneDrive\Desktop\BACS3013  DATA SCIENCE'
-    output_file_name = 'fifa_players_cleaned.csv'
-    output_file_path = os.path.join(output_dir, output_file_name)
-
-    try:
-        df.to_csv(output_file_path, index=False)
-        print(f"\nNew CSV file created successfully at: {output_file_path}")
-    except Exception as e:
-        print(f"\nAn error occurred during saving: {e}")
+    # # d output file path
+    # output_dir = r'C:\Users\acyp2\OneDrive\Desktop\BACS3013  DATA SCIENCE'
+    # output_file_name = 'fifa_players_cleaned.csv'
+    # output_file_path = os.path.join(output_dir, output_file_name)
+    #
+    # try:
+    #     df.to_csv(output_file_path, index=False)
+    #     print(f"\nNew CSV file created successfully at: {output_file_path}")
+    # except Exception as e:
+    #     print(f"\nAn error occurred during saving: {e}")
 
 else:
     print("The 'positions' column does not exist in the dataset.")
