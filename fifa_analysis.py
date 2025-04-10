@@ -11,5 +11,8 @@ columns_to_keep = df.columns[:2].tolist() + df.columns[3:5].tolist()
 # Create a new DataFrame with only the selected columns
 df_selected = df[columns_to_keep]
 
+for column in df.columns:
+        print(column)
+
 print("DataFrame with the first two and the fourth and fifth columns:\n")
 print(df_selected.head())
